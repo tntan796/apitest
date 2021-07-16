@@ -2,15 +2,15 @@ import React, { Component } from 'react';
 
 class StatusItem extends Component {
     render() {
-       
+          var{task,index}=this.props
         return (
             <tr>
-            <td>1</td>
-            <td>Học lập trình</td>
-            <td>Tôi luôn thức dậy lúc 6 giờ sáng </td>
+            <td>{task.id}</td>
+            <td>{task.title}</td>
+            <td>{task.description} </td>
             <td className="text-center">
-              <span className="label label-success">
-                1
+              <span className={task.status===1? "label label-success": "label label-danger"}>
+                {task.status}
               </span>
             </td>
             

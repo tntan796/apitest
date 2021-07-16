@@ -6,27 +6,31 @@ class StatusList extends Component {
         super(props);
         this.state={
             tasks:[]
-        }
+        };
     }
-    
-
-    render() {
+     componentDidMount(){
+      axios({
+        method: 'GET',
+        url: 'https://tano-api.herokuapp.com/tasks',
+        data: null
+      }).then(res=>{
+          this.setState({
+            tasks: res.data
+         });  
             
-        axios({
-            method: 'GET',
-            url: 'https://tano-api.herokuapp.com/tasks/',
-            data: null
-          }).then(res=>{
-              this.setState({
-                tasks: res.data
-              });  
-              /* console.log(res) */
-              
-          }).catch(err=>{
-              console.log(err);
-          })
-           
+          
+      }).catch(err=>{
+          console.log(err);
+      })
+     }
+    render() {
+      var {tasks} = this.state ;
+      var elmTasks=tasks.map((task,index)=>{
+        return (<StatusItem key={index} task={task}  />
+        ) ;
+      });
         return (
+          
             <table className="table table-bordered table-hover">
             <thead>
               <tr>
@@ -38,7 +42,7 @@ class StatusList extends Component {
               </tr>
             </thead>
             <tbody>
-           
+             {elmTasks}
             </tbody>
           </table>
         );
