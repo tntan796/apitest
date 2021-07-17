@@ -23,7 +23,7 @@ class StatusForm  extends Component {
     event.preventDefault();
     axios({
       method: 'POST',
-      url: 'https://tano-api.herokuapp.com/tasks/add',
+      url: 'https://tano-api.herokuapp.com/tasks/add/',
       data: {title : this.state.txtTitle,
             description:this.state.txtDescription,
             status: this.state.txtStatus

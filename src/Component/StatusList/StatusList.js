@@ -23,10 +23,41 @@ class StatusList extends Component {
           console.log(err);
       })
      }
+
+     onDelete =(id) =>{
+       var {tasks}=this.state
+      axios({
+        method: 'DELETE',
+        url: 'https://tano-api.herokuapp.com/tasks/delete/${id}',
+        data: null
+      }).then(res=>{
+          if(res.status===200){
+           var index=this.findIndex(tasks,id);
+           if(index !== -1){
+             tasks.splice(index,1);
+             this.setState({
+               tasks:tasks
+             })
+           }
+          }
+          console.log(res)
+          
+      }).catch(err=>{
+          console.log(err);
+      })
+     }
+     findInex=(tasks,id)=>{
+       var result=-1;
+       tasks.forEach((task,index) => {
+         if(task.id===id)
+         result=index;
+       });
+       return result;
+     }
     render() {
       var {tasks} = this.state ;
       var elmTasks=tasks.map((task,index)=>{
-        return (<StatusItem key={index} task={task}  />
+        return (<StatusItem key={index} task={task} onDelete={this.onDelete}  />
         ) ;
       });
         return (
