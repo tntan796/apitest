@@ -28,7 +28,7 @@ class StatusList extends Component {
        var {tasks}=this.state
       axios({
         method: 'DELETE',
-        url: 'https://tano-api.herokuapp.com/tasks/delete/${id}',
+        url: `https://tano-api.herokuapp.com/tasks/delete/${id}`,
         data: null
       }).then(res=>{
           if(res.status===200){
