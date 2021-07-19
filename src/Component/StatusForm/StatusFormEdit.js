@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import history from 'react-router-dom';
   
-class StatusForm extends Component {
+class StatusFormEdit extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -11,6 +11,9 @@ class StatusForm extends Component {
       txtStatus: "",
       txtDescription: "",
     };
+  }
+  componentDidMount(){
+    
   }
   onChange = (event) => {
     var target = event.target;
@@ -51,7 +54,7 @@ class StatusForm extends Component {
     return (
       <div className="panel panel-warning">
         <div className="panel-heading">
-          <h3 className="panel-title">Thêm Trạng thái </h3>
+          <h3 className="panel-title">Sửa Trạng thái </h3>
         </div>
         <div className="panel-body">
           <form onSubmit={this.onSubmit}>
@@ -85,7 +88,7 @@ class StatusForm extends Component {
             <br />
             <div className="text-center">
               <button type="submit" className="btn btn-warning">
-                Thêm
+                Sửa
               </button>
               &nbsp;
               <button type="button" className="btn btn-danger" onClick={this.onClear}>
@@ -99,4 +102,4 @@ class StatusForm extends Component {
   }
 }
 
-export default StatusForm;
+export default StatusFormEdit;

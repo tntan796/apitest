@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import {Link} from 'react-router-dom'
         class StatusItem extends Component {
           onDelete = (id) => {
            
@@ -26,10 +26,9 @@ import React, { Component } from 'react';
                 </td>
 
                 <td className="text-center">
-                  <button type="button" className="btn btn-warning">
-                    <span className="fa fa-pencil mr-5" />
+                  <Link to='StatusFormEdit' className="btn btn-warning">
                     Sửa
-                  </button>
+                  </Link>
                   &nbsp;
                   <button
                     type="button"

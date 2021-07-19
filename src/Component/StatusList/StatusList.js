@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import StatusItem from '../StatusItem/StatusItem';
-import axios from 'axios'
+import callApi from './../../utils/apiCaller';
 class StatusList extends Component {
     constructor(props) {
         super(props);
@@ -9,28 +9,29 @@ class StatusList extends Component {
         };
     }
      componentDidMount(){
-      axios({
+
+       callApi('tasks','GET', null)
+     /*  axios({
         method: 'GET',
         url: 'https://tano-api.herokuapp.com/tasks',
         data: null
-      }).then(res=>{
+      }) */.then(res=>{
           this.setState({
             tasks: res.data
-         });  
-            
-          
-      }).catch(err=>{
-          console.log(err);
-      })
+         });   
+         
+      });
      }
 
      onDelete =(id) =>{
        var {tasks}=this.state
-      axios({
+     /*  axios({
         method: 'DELETE',
         url: `https://tano-api.herokuapp.com/tasks/delete/${id}`,
         data: null
-      }).then(res=>{
+      }) */
+      callApi(`tasks/delete/${id}`,'DELETE',null)
+      .then(res=>{
           if(res.status===200){
            var index=this.findIndex(tasks,id);
            if(index !== -1){

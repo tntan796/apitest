@@ -14,7 +14,7 @@ import {
         });
         return (
           <Link className={match ? "menu-item active" : "menu-item"} to={to}>
-            {label}{" "}
+            {label}
           </Link>
         );
       }

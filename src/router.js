@@ -10,7 +10,7 @@ const routes=[
         {
             path:'/managerstatus',
             exact:true,
-            main: ()=> <StatusList  />
-        },
+            main: ({tasks})=>  <StatusList tasks={tasks} />
+        }
 ];
 export default routes;
