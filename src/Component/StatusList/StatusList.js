@@ -11,11 +11,7 @@ class StatusList extends Component {
      componentDidMount(){
 
        callApi('tasks','GET', null)
-     /*  axios({
-        method: 'GET',
-        url: 'https://tano-api.herokuapp.com/tasks',
-        data: null
-      }) */.then(res=>{
+          .then(res=>{
           this.setState({
             tasks: res.data
          });   
@@ -24,12 +20,7 @@ class StatusList extends Component {
      }
 
      onDelete =(id) =>{
-       var {tasks}=this.state
-     /*  axios({
-        method: 'DELETE',
-        url: `https://tano-api.herokuapp.com/tasks/delete/${id}`,
-        data: null
-      }) */
+       var {tasks}=this.state;
       callApi(`tasks/delete/${id}`,'DELETE',null)
       .then(res=>{
           if(res.status===200){
@@ -62,7 +53,6 @@ class StatusList extends Component {
         ) ;
       });
         return (
-          
             <table className="table table-bordered table-hover">
             <thead>
               <tr>

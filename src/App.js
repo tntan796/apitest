@@ -7,19 +7,15 @@ import StatusList from './Component/StatusList/StatusList';
 import StatusFormEdit from './Component/StatusForm/StatusFormEdit';
 
 import routes from './router';
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state={ 
-      tasks: []
-    }
-  }
-  
-  render() {  
-   
-   
-    return (
-     
+    class App extends Component {
+      constructor(props) {
+        super(props);
+        this.state={ 
+          tasks: []
+        }
+      }
+      render() {  
+        return (
       <Router>
         <div className="container">
           <Menu />
@@ -30,7 +26,7 @@ class App extends Component {
                 </Route>
               </Switch> 
                <Switch>
-                <Route exact path="/StatusFormEdit"  component={({history,match})=>  <StatusFormEdit history={history} match={match} />}>
+                <Route exact path="/tasks/:id/edit"  component={({history,match})=>  <StatusFormEdit history={history} match={match} />}>
                 </Route>
               </Switch> 
             </div>
