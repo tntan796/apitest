@@ -46,7 +46,7 @@ class StatusList extends Component {
           console.log(err);
       })
      }
-     findInex=(tasks,id)=>{
+     findIndex=(tasks,id)=>{
        var result=-1;
        tasks.forEach((task,index) => {
          if(task.id===id)
