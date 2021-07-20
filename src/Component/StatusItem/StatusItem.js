@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {Link} from 'react-router-dom'
 class StatusItem extends Component {
   onDelete = (id) => {
-    if (confirm("Bạn chắc chắn muốn xóa không?")) {//eslint-disable-line
+    if (confirm( "Bạn chắc chắn muốn xóa không?")) {//eslint-disable-line
       this.props.onDelete(id);
     }
   };

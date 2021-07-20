@@ -9,16 +9,13 @@ class StatusList extends Component {
         };
     }
      componentDidMount(){
-
        callApi('tasks','GET', null)
           .then(res=>{
           this.setState({
             tasks: res.data
          });   
-         
       });
      }
-
      onDelete =(id) =>{
        var {tasks}=this.state;
       callApi(`tasks/delete/${id}`,'DELETE',null)
@@ -38,36 +35,36 @@ class StatusList extends Component {
           console.log(err);
       })
      }
-     findIndex=(tasks,id)=>{
-       var result=-1;
-       tasks.forEach((task,index) => {
-         if(task.id===id)
-         result=index;
-       });
-       return result;
-     }
-    render() {
-      var {tasks} = this.state ;
-      var elmTasks=tasks.map((task,index)=>{
-        return (<StatusItem key={index} task={task} onDelete={this.onDelete}  />
-        ) ;
-      });
-        return (
-            <table className="table table-bordered table-hover">
-            <thead>
-              <tr>
-                <th className="text-center">STT</th>
-                <th className="text-center">Tiêu Đề </th>
-                <th className="text-center">Mô tả</th>
-                <th className="text-center">Trạng thái </th>
-                <th className="text-center">Thao tác  </th>
-              </tr>
-            </thead>
-            <tbody>
-             {elmTasks}
-            </tbody>
-          </table>
-        );
+  findIndex = (tasks, id) => {
+    var result = -1;
+    tasks.forEach((task, index) => {
+      if (task.id === id)
+        result = index;
+    });
+    return result;
+  }
+  render() {
+    var { tasks } = this.state;
+    var elmTasks = tasks.map((task, index) => {
+      return (<StatusItem key={index} task={task} onDelete={this.onDelete} />
+      );
+    });
+    return (
+      <table className="table table-bordered table-hover">
+        <thead>
+          <tr>
+            <th className="text-center">STT</th>
+            <th className="text-center">Tiêu Đề </th>
+            <th className="text-center">Mô tả</th>
+            <th className="text-center">Trạng thái </th>
+            <th className="text-center">Thao tác  </th>
+          </tr>
+        </thead>
+        <tbody>
+          {elmTasks}
+        </tbody>
+      </table>
+    );
     }
 }
 

@@ -14,20 +14,20 @@ import callApi from '../../utils/apiCaller';
           };
         }
         onChange = (event) => {
-          var target = event.target;
-          var name = target.name;
-          var value = target.value;
+          var target = event. target;
+          var name = target. name;
+          var value = target. value;
           this.setState({
             [name]: value,
           });
         };
         onSubmit = (event) => {
           event.preventDefault();
-          var { history } = this.props;
+          var { history } = this. props;
           callApi('tasks/add', 'POST', {
-            title: this.state.txtTitle,
-            description: this.state.txtDescription,
-            status: this.state.txtStatus,
+            title: this. state. txtTitle,
+            description: this. state. txtDescription,
+            status: this. state. txtStatus,
           }).then(res => {
             console.log(res);
             history.push('/managerstatus')

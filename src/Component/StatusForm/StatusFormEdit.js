@@ -3,16 +3,16 @@ import axios from 'axios';
 import history from 'react-router-dom';
 import callApi from '../../utils/apiCaller';
 
-class StatusFormEdit extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      id: "",
-      txtTitle: "",
-      txtStatus: "",
-      txtDescription: "",
-    };
-  }
+  class StatusFormEdit extends Component {
+    constructor(props) {
+      super(props);
+      this.state = {
+        id: "",
+        txtTitle: "",
+        txtStatus: "",
+        txtDescription: "",
+      };
+    }
   componentDidMount() {
     var { match } = this.props
     if (match) {
@@ -41,14 +41,15 @@ class StatusFormEdit extends Component {
     var { id } = this.state;
     var { history } = this.props;
         if (id) {
-          callApi(`tasks/${id}`, 'PUT', {
+          callApi(`tasks/edit`,'POST', {
+            id:id,
             title: this.state.txtTitle,
             description: this.state.txtDescription,
             status: this.state.txtStatus,
           }).then(res => {
             console.log(res);
             history.push('/managerstatus')
-          });
+          }); 
         }
       }
       onClear = () => {
