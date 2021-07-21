@@ -44,11 +44,11 @@ class StatusList extends Component {
     return result;
   }
   render() {
-    var { tasks } = this.state;
-    var elmTasks = tasks.map((task, index) => {
-      return (<StatusItem key={index} task={task} onDelete={this.onDelete} />
-      );
-    });
+      var { tasks } = this.state;
+      var elmTasks = tasks.map((task, index) => {
+        return (<StatusItem key={index} task={task} onDelete={this.onDelete} />
+        );
+      });
     return (
       <table className="table table-bordered table-hover">
         <thead>

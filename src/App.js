@@ -22,11 +22,11 @@ import routes from './router';
           <div className="row">
             <div className="col-xs-4 col-sm-4 col-md-4 col-lg-4">
                <Switch>
-                <Route exact path="/addstatus"  component={({history})=>  <StatusForm history={history} />}>
+                <Route exact path="/addstatus"  component={({history})=>  <StatusForm history={history} />}>  
                 </Route>
               </Switch> 
                <Switch>
-                <Route exact path="/tasks/:id/edit"  component={({history,match})=>  <StatusFormEdit history={history} match={match} />}>
+                <Route exact path="/tasks/:id/edit"  component={({history,match})=>  <StatusFormEdit history={history} match={match} />}>   
                 </Route>
               </Switch> 
             </div>

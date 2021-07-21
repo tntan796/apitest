@@ -13,7 +13,8 @@ import callApi from '../../utils/apiCaller';
         txtDescription: "",
       };
     }
-  componentDidMount() {
+   /*   hiển thị dữ liệu trên form sửa */
+  componentDidMount() {      
     var { match } = this.props
     if (match) {
       var id = match.params.id;
@@ -28,6 +29,7 @@ import callApi from '../../utils/apiCaller';
       });
     }
   }
+  /* Sự kiện cho nút sửa */
   onChange = (event) => {
     var target = event.target;
     var name = target.name;
@@ -52,6 +54,7 @@ import callApi from '../../utils/apiCaller';
           }); 
         }
       }
+    /*    Xóa dữ liệu trên input  */
       onClear = () => {
         this.setState({
           txtTitle: "",
@@ -60,6 +63,7 @@ import callApi from '../../utils/apiCaller';
         })
 
       }
+      /* Chức năng trở về  */
       onEdit = () => {
         var { history } = this.props
         history.goBack();
