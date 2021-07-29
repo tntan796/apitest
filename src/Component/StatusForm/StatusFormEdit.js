@@ -1,53 +1,54 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect, useState } from 'react';
 import axios from 'axios';
 import history from 'react-router-dom';
 import callApi from '../../utils/apiCaller';
-
-  class StatusFormEdit extends Component {
-    constructor(props) {
-      super(props);
-      this.state = {
-        id: "",
-        txtTitle: "",
-        txtStatus: "",
-        txtDescription: "",
-      };
-    }
+  function StatusFormEdit(props) {
+    
+        const [id,setid]=useState('');
+        const [txtTitle,settxtTitle]=useState('');
+        const [txtStatus,settxtStatus]=useState('');
+        const [txtDescription,settxtDescription]=useState('');
+    
    /*   hiển thị dữ liệu trên form sửa */
-  componentDidMount() {      
-    var { match } = this.props
+   useEffect(()=>{
+    const { match } = props
     if (match) {
       var id = match.params.id;
       callApi(`tasks/${id}`, 'GET', null).then(res => {
         var data = res.data;
-        this.setState({
-          id: data.id,
-          txtTitle: data.title,
-          txtStatus: data.status,
-          txtDescription: data.description
+         setid( data.id);
+         settxtTitle(data.title);
+          settxtStatus(data.status);
+         settxtDescription(data.description);
+  
         })
-      });
+     
     }
-  }
+   }
+   )
+ 
   /* Sự kiện cho nút sửa */
-  onChange = (event) => {
-    var target = event.target;
-    var name = target.name;
-    var value = target.value;
-    this.setState({
-      [name]: value,
-    });
-  };
-  onSubmit = (event) => {
+
+    const handletxtTitle=(event)=>{
+       settxtTitle(event.target.value) ;
+    }
+    const handletxtStatus=(event)=>{
+       settxtStatus(event.target.value) ;
+    }
+    const handletxtDescription=(event)=>{
+       settxtDescription(event.target.value) ;
+    }
+  
+const onSubmit = (event) => {
     event.preventDefault();
-    var { id } = this.state;
-    var { history } = this.props;
+    var { id } = id;
+    var { history } = props;
         if (id) {
           callApi(`tasks/edit`,'POST', {
             id:id,
-            title: this.state.txtTitle,
-            description: this.state.txtDescription,
-            status: this.state.txtStatus,
+            title: txtTitle,
+            description: txtDescription,
+            status: txtStatus,
           }).then(res => {
             console.log(res);
             history.push('/managerstatus')
@@ -55,28 +56,24 @@ import callApi from '../../utils/apiCaller';
         }
       }
     /*    Xóa dữ liệu trên input  */
-      onClear = () => {
-        this.setState({
-          txtTitle: "",
-          txtStatus: "",
-          txtDescription: "",
-        })
-
+   const   onClear = () => {
+       settxtTitle('');
+       settxtStatus('');
+       settxtDescription('');
       }
       /* Chức năng trở về  */
-      onEdit = () => {
-        var { history } = this.props
+    const  onEdit = () => {
+        var { history } = props
         history.goBack();
       }
-      render() {
-        var { txtTitle, txtDescription, txtStatus } = this.state;
-    return (
+
+ return (
       <div className="panel panel-warning">
         <div className="panel-heading">
           <h3 className="panel-title">Sửa Trạng thái </h3>
         </div>
         <div className="panel-body">
-          <form onSubmit={this.onSubmit}>
+          <form onSubmit={onSubmit}>
             <div className="form-group">
               <label>Tiêu đề :</label>
               <input
@@ -84,7 +81,7 @@ import callApi from '../../utils/apiCaller';
                 className="form-control"
                 name="txtTitle"
                 value={txtTitle}
-                onChange={this.onChange}
+                onChange={handletxtTitle}
               />
             </div>
             <div className="form-group">
@@ -93,7 +90,7 @@ import callApi from '../../utils/apiCaller';
                 className="form-control"
                 name="txtDescription"
                 value={txtDescription}
-                onChange={this.onChange}
+                onChange={handletxtDescription}
               ></textarea>
             </div>
             <label>Trạng Thái :</label>
@@ -102,7 +99,7 @@ import callApi from '../../utils/apiCaller';
               className="form-control"
               name="txtStatus"
               value={txtStatus}
-              onChange={this.onChange}
+              onChange={handletxtStatus}
             />
             <br />
             <div className="text-center">
@@ -110,10 +107,10 @@ import callApi from '../../utils/apiCaller';
                 Sửa
               </button>
               &nbsp;
-              <button type="button" className="btn btn-danger" onClick={this.onClear}>
+              <button type="button" className="btn btn-danger" onClick={onClear}>
                 Hủy Bỏ
               </button>
-              <button type="button" className="btn btn-warning" onClick={this.onEdit}>
+              <button type="button" className="btn btn-warning" onClick={onEdit}>
                 Trở về
               </button>
             </div>
@@ -121,7 +118,5 @@ import callApi from '../../utils/apiCaller';
         </div>
       </div>
     );
-  }
-}
-
+  } 
 export default StatusFormEdit;

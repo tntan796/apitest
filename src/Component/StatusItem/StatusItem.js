@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom'
-class StatusItem extends Component {
+
+function StatusItem(props) {
 
     /*   Xuất hiện thông báo Xóa  */
-  onDelete = (id) => {
+ const onDelete = (id) => {
+   const {onDelete}=props
     if (confirm( "Bạn chắc chắn muốn xóa không?")) {//eslint-disable-line
-      this.props.onDelete(id);
+      onDelete(id);
     }
   };
-  render() {
-    var { task, } = this.props;
+    const { task } = props;
     return (
       <tr>
         <td>{task.id}</td>
@@ -33,7 +34,7 @@ class StatusItem extends Component {
           <button
             type="button"
             className="btn btn-danger"
-            onClick={() => this.onDelete(task.id)}
+            onClick={() =>onDelete(task.id)}
           >
             <span className="fa fa-trash mr-5" />
             Xóa
@@ -42,6 +43,6 @@ class StatusItem extends Component {
       </tr>
     );
   }
-}
+
 
 export default StatusItem;

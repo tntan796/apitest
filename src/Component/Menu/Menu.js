@@ -18,8 +18,8 @@ function MyLink({ label, to, activeOnlyWhenExact }) {
     </Link>
   );
 }
-class Menu extends Component {
-  render() {
+  function Menu() {
+
     return (
       <nav className="navbar navbar-default" role="navigation">
         <div className="navbar-header">
@@ -39,6 +39,5 @@ class Menu extends Component {
       </nav>
     );
   }
-}
 
 export default Menu;
